@@ -98,6 +98,9 @@ void loop() {
               Serial.println("index action is: " + String(i));
               Serial.println("String action is: " + codeString[i]);
             #endif
+
+            currentState = PROCESS_IR_STRING;
+            irString = codeString[i];
           }
         }
       }
@@ -349,9 +352,11 @@ void decodeIRString(String irstring) {
         Serial.println(ir);
         Serial.println(irString);
       #endif
-      break;
+      return;
     }
   }
+  ir = irString;
+  irString = "";
 }
 
 /************* Handel the massage receive **********/
